@@ -1,6 +1,7 @@
 package ctrl;
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,17 +17,22 @@ public class FrontController extends HttpServlet{
 		String uri = request.getRequestURI(); // Domain 뒤 url 주소 모두 긁어옴
 		System.out.println("uri: " + uri);
 		
-		String contextPath = request.getContextPath();
+		String contextPath = request.getContextPath(); // Domain 뒤 API 까지의 Location
 		System.out.println("context: " + contextPath);
 		
-		String path = uri.substring(contextPath.length());
+		String path = uri.substring(contextPath.length());  // 실제로 작동하는 API Location
 		System.out.println("path: " + path);
 		
-		if(path.equals("/test.do")) {
-			String name = request.getParameter("name");
+		String targetPage = "" ; // targetPage 값을 null값으로 두고 아래 if문을 통해 조건별로 targetPage 변경
+		
+		if(path.equals("/test.do")) {  // 
+			String name = request.getParameter("name");  // GET방식으로 넘어온 파라미터값 받아와서 command 출력
 			System.out.println("name: " + name);
-			
+			targetPage = "/testReturn.jsp";
 		}
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(targetPage); // targetPage로 보내준다
+		requestDispatcher.forward(request, response); // data binding
 	} 
 	
 	@Override
