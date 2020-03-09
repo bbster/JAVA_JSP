@@ -20,7 +20,7 @@
 	<!-- <Manager pathname="" /> -->
 	<!-- django DATABASES 설정과 비슷 -->
 	<Resource name="jdbc/mysql" auth="Container"
-		type="javax.sql.DataSrouce" driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost/jspdb" username="root" password="root"
+		type="javax.sql.DataSource" driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost/jspdb" username="root" password=""
 		maxActive="5" maxIdle="3" />
 </Context>

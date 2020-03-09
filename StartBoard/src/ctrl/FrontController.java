@@ -1,6 +1,7 @@
 package ctrl;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.LoggerFactory;
-
 import model.BoardDAO;
-
 import org.slf4j.Logger;
 
 // 컨트롤러는 매핑 역할(django urls 역할)만 해주는게 좋다. - 모듈화를 잘 해야된다.
@@ -42,13 +41,19 @@ public class FrontController extends HttpServlet {
 			String email = request.getParameter("email");
 
 			BoardDAO bdao = new BoardDAO();
-			bdao.insert(title, author, content, email);
+			boolean flag = bdao.insert(title, author, content, email);
 
-			targetPage = "/testReturn.jsp";
-		}
+			if (flag) {
+				log.info(" INSERT DATA SUCCESS");
+			} else {
+				log.info(" INSERT DATA Fail");
+			}
 
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(targetPage); // targetPage로 보내준다
-		requestDispatcher.forward(request, response); // data binding
+		targetPage = "/testReturn.jsp";
+	}
+
+	RequestDispatcher requestDispatcher = request.getRequestDispatcher(targetPage); // targetPage로 보내준다
+	requestDispatcher.forward(request,response); // data binding
 	}
 
 	@Override
