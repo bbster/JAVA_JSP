@@ -1,5 +1,7 @@
 package service;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +15,7 @@ public class ModifyAction implements Action {
 	private static Logger log = LoggerFactory.getLogger(ModifyAction.class);
 
 	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+	public void execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
 		int bno = Integer.parseInt(req.getParameter("clno"));
 		String title = req.getParameter("title");
 		String author = req.getParameter("author");

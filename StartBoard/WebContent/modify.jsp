@@ -31,7 +31,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea cols="20" rows="5" name="content">${bdto.content}</td>
+				<td><textarea cols="20" rows="5" name="content">${bdto.content}</textarea></td>
 			</tr>
 			<tr>
 				<td>연락처</td>
@@ -40,6 +40,7 @@
 			<tr>
 				<td colspan="2" style="text-align: center;">
 				<input type="submit" value="수정"> <input type="reset" value="초기화">
+				</td>
 			</tr>
 		</table>
 	</form>

@@ -1,5 +1,7 @@
 package service;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -11,7 +13,7 @@ public class InsertAction implements Action {
 	private static Logger log = LoggerFactory.getLogger(InsertAction.class);
 
 	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+	public void execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
 		String title = req.getParameter("title");
 		String author = req.getParameter("author");
 		String content = req.getParameter("content");

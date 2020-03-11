@@ -34,7 +34,7 @@ public class BoardDAO {
 		}
 	}
 
-	public boolean insert(BoardDTO bdto) {
+	public boolean insert(BoardDTO bdto) throws SQLException {
 		String sql = "INSERT INTO board(title, author, content, email, regdate)" + " VALUES(?,?,?,?,now())";
 		try {
 			cn = ds.getConnection();
@@ -48,10 +48,13 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
+		} finally {
+			if (pst != null) pst.close();
+			if (cn != null) cn.close();
 		}
 	}
 
-	public ArrayList<BoardDTO> getList() {
+	public ArrayList<BoardDTO> getList() throws SQLException {
 		String sql = "SELECT * FROM board ORDER BY bno DESC";
 		ArrayList<BoardDTO> bList = new ArrayList<>();
 
@@ -73,10 +76,14 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			if (rs != null) rs.close();
+			if (st != null) st.close();
+			if (cn != null) cn.close();
 		}
 	}
 
-	public BoardDTO getDetail(int bno) {
+	public BoardDTO getDetail(int bno) throws SQLException {
 		String sql = "SELECT * FROM board WHERE bno=" + bno;
 		try {
 			cn = ds.getConnection();
@@ -95,10 +102,14 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			if (rs != null) rs.close();
+			if (st != null) st.close();
+			if (cn != null) cn.close();
 		}
 	}
 
-	public boolean modify(BoardDTO bdto) {
+	public boolean modify(BoardDTO bdto) throws SQLException {
 		String sql = "UPDATE board SET title=?, author=?, content=?, email=?, regdate=now() where bno=?";
 		try {
 			cn = ds.getConnection();
@@ -113,6 +124,9 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
+		} finally {
+			if (pst != null) pst.close();
+			if (cn != null) cn.close();
 		}
 	}
 }
