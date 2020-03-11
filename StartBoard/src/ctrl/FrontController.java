@@ -1,7 +1,7 @@
 package ctrl;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,11 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.LoggerFactory;
-import model.BoardDAO;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-// 컨트롤러는 매핑 역할(django urls 역할)만 해주는게 좋다. - 모듈화를 잘 해야된다.
+import model.BoardDAO;
+import model.BoardDTO;
+import service.Action;
+import service.DetailAction;
+import service.InsertAction;
+import service.ListAction;
+import service.ModifyAction;
+//컨트롤러는 매핑 역할(django urls 역할)만 해주는게 좋다. - 모듈화를 잘 해야된다.
 public class FrontController extends HttpServlet {
 	private static Logger log = LoggerFactory.getLogger(FrontController.class);
 
@@ -21,50 +27,58 @@ public class FrontController extends HttpServlet {
 	}
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String uri = request.getRequestURI(); // Domain 뒤 주소 모두 긁어옴
-		log.info("uri: " + uri);
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String uri = req.getRequestURI();
+		log.info("uri : " + uri);
 
-		String contextPath = request.getContextPath(); // Domain 뒤 API 까지의 Location
-		log.info("context: " + contextPath);
+		String contextPath = req.getContextPath();
+		log.info("context : " + contextPath);
 
-		String path = uri.substring(contextPath.length()); // 실제로 작동하는 API Location
-		log.info("path: " + path);
+		String path = uri.substring(contextPath.length());
+		log.info("path : " + path);
 
-		String targetPage = ""; // targetPage 값을 null값으로 두고 아래 if문을 통해 조건별로 targetPage 변경
+		String targetPage = "";
 
-		if (path.equals("/writeSave.do")) { //
-			String title = request.getParameter("title"); // GET방식으로 넘어온 파라미터값 받아와서 command 출력
-			String author = request.getParameter("author");
-			String content = request.getParameter("content");
-			String email = request.getParameter("email");
+		Action action = null;
 
-			BoardDAO bdao = new BoardDAO();
-			boolean flag = bdao.insert(title, author, content, email);
+		if (path.equals("/writeSave.do")) {
+			action = new InsertAction();
+			action.execute(req, resp);
+			targetPage = "list.do";
+			
+		} else if (path.equals("/list.do")) {
+			action = new ListAction();
+			action.execute(req, resp);
+			targetPage = "/list.jsp";
 
-			if (flag) {
-				log.info(" INSERT DATA SUCCESS");
-			} else {
-				log.info(" INSERT DATA Fail");
-			}
+		} else if (path.equals("/detail.do")) {
+			action = new DetailAction();
+			action.execute(req, resp);
+			targetPage = "/detail.jsp";
+			
+		} else if (path.equals("/modify.do")) {
+			action = new DetailAction();
+			action.execute(req, resp);
+			targetPage = "/modify.jsp";
+			
+		} else if (path.equals("/modifySave.do")) {
+			action = new ModifyAction();
+			action.execute(req, resp);
+			targetPage = "detail.do";
+		}
 
-		targetPage = "/testReturn.jsp";
-	}
-
-	RequestDispatcher requestDispatcher = request.getRequestDispatcher(targetPage); // targetPage로 보내준다
-	requestDispatcher.forward(request,response); // data binding
+		RequestDispatcher requestDispatcher = req.getRequestDispatcher(targetPage);
+		requestDispatcher.forward(req, resp);
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		service(request, response);
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		service(req, resp);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		service(request, response);
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		service(req, resp);
 	}
+
 }

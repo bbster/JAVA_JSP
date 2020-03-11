@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	id="WebApp_ID" version="3.1">
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
 	<display-name>StartBoard</display-name>
-
-	<!-- 웹 작업시 진입점 web.xml(django settings와 유사) -->
-
-	<!-- django / client - Web-Server - WAS - Logic(Django, Python, DB) -->
-	<!-- spring / client - WAS - servlet - Logic -->
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file> <!-- Main -->
+		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	<resource-ref>
 		<description>DB Connection</description>
@@ -18,8 +13,7 @@
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
-
-	<context-param> <!-- 로그를 다루는 부분 최상단 위치 -->
+	<context-param>
 		<param-name>log4j2Config</param-name>
 		<param-value>/WEB-INF/log4j2.xml</param-value>
 	</context-param>
@@ -27,10 +21,8 @@
 		<servlet-name>FrontController</servlet-name>
 		<servlet-class>ctrl.FrontController</servlet-class>
 	</servlet>
-
 	<servlet-mapping>
-		<servlet-name>FrontController</servlet-name> <!-- FrontController라는 컨트롤러로 *.do로 된 모든것을 보낸다 -->
-		<url-pattern>*.do</url-pattern> <!-- .do로 된 모든 URL // django url pattern 설정과 동일 -->
+	<servlet-name>FrontController</servlet-name>
+	<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-
 </web-app>

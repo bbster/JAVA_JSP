@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" monitorInterval="30">
 	<Properties>
-		<Property name="baseDir">C:/_jsp/logs/StartBoard/</Property> <!-- 로그가 쌓이는 기본 디렉토리 -->
+		<Property name="baseDir">C:/_jsp/logs/StartBoard</Property>
 	</Properties>
 	<Appenders>
-		<Console name="Console" target="SYSTEM_OUT"> <!-- console 명령어 -->
-			<PatternLayout
-				pattern="%d{HH:mm:ss.SSS}[%t]%-5level %logger{36}-%msg%n" />
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS}[%t]%-5level %logger{36}-%msg%n" />
 		</Console>
-
-		<!-- 시간이 지나면 로그를 파일로 만들어줌 설정: 하루기준 -->
-		<RollingFile name="RollingFile"
-			fileName="${baseDir}/app.log"
+		<RollingFile name="RollingFile" fileName="${baseDir}/app.log"
 			filePattern="${baseDir}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.zip">
 			<PatternLayout>
 				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
 			</PatternLayout>
 			<Policies>
 				<TimeBasedTriggeringPolicy />
-				<SizeBasedTriggeringPolicy size="250 MB" /> <!-- log.zip 파일이 250mb가 넘어가면 새로운 .zip파일 만듬 -->
+				<SizeBasedTriggeringPolicy size="250 MB" />
 			</Policies>
 			<DefaultRolloverStrategy max="20" />
 		</RollingFile>
@@ -26,7 +22,7 @@
 	<Loggers>
 		<Root level="trace">
 			<AppenderRef ref="Console" />
-			<AppenderRef ref="RollingFile" />
+			<AppenderRef ref="RollingFile"/>
 		</Root>
 	</Loggers>
 </Configuration>

@@ -13,3 +13,10 @@ mysql
 PreparedStatement executeUpdate/executeQuery
  - insert into 같이(DATA 변화 O) executeUpdate
  - select 같이(DATA 변화 X) executeQuery
+ 
+Interface(컴포넌트 명시 / django import views use function)
+ 
+ 다형성
+ 오버라이드,오버로딩
+ Form Tag 작동의 이해
+ 
