@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- <h1>Index.jsp</h1>
-	<h1><a href="http://www.naver.com">Naver.com</a></h1>
-	<h1><a href="./test.do?myName=PARK_KI_TAE">이름을 알려주세요~!~!</a></h1> -->
 	<form action="./writeSave.do" method="post">
 	<table border="1">
 		<tr>

@@ -129,4 +129,20 @@ public class BoardDAO {
 			if (cn != null) cn.close();
 		}
 	}
+	
+	public boolean remove(int bno) throws SQLException {
+		String sql = "DELETE FROM board WHERE bno=" + bno;
+		
+		try {
+			cn = ds.getConnection();
+			st = cn.createStatement();
+			st.execute(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if (pst != null) pst.close();
+			if (cn != null) cn.close();
+		}
+		return false;
+	}
 }

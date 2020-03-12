@@ -36,9 +36,11 @@
 			<td>${bdto.email}</td>
 		</tr>
 		<tr>
-			<td colspan="2" style="text-align: center;"><a
-				href="./modify.do?clno=${bdto.bno}">수정</a> 
+			<td colspan="2" style="text-align: center;">
+			<a href="./modify.do?clno=${bdto.bno}">수정</a>
+			<a href="./remove.do?clno=${bdto.bno}">삭제</a> 
 			</td>
+			<td>
 		</tr>
 	</table>
 </body>

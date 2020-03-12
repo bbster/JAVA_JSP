@@ -20,6 +20,7 @@ import service.DetailAction;
 import service.InsertAction;
 import service.ListAction;
 import service.ModifyAction;
+import service.RemoveAction;
 //컨트롤러는 매핑 역할(django urls 역할)만 해주는게 좋다. - 모듈화를 잘 해야된다.
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -87,7 +88,17 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			targetPage = "detail.do";
+		}else if (path.equals("/remove.do")) {
+			action = new RemoveAction();
+			try {
+				action.execute(req, resp);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			targetPage = "list.do";
 		}
+		
+		
 
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher(targetPage);
 		requestDispatcher.forward(req, resp);
