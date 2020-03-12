@@ -1,5 +1,12 @@
 #JAVA-SPRING
 
+## Setting
+ 1. java 1.8.0설치
+ 2. Path 경로 설정
+ 3. eclipse photon 설치
+ 4. MAMP or mysql 5.7.29, mysql connector-java 5.1.48 설치
+ 
+
 ##server.context.xml -> WebContent.WEB-INF.WEb.xml -> servlet mapping(django url pattern 유사) -> 해당 경로(controller,view 등등 쓰기 나름)
 
 
