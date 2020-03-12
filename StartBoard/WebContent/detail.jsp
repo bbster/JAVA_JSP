@@ -4,10 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+<script src="./bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<table border="1">
+	<div class="container">
+	<h2>테스트 게시판 Detail</h2>
+	<table class="table">
 		<tr>
 			<td colspan="2" style="text-align: center;">Detail</td>
 		</tr>
@@ -37,11 +43,12 @@
 		</tr>
 		<tr>
 			<td colspan="2" style="text-align: center;">
-			<a href="./modify.do?clno=${bdto.bno}">수정</a>
-			<a href="./remove.do?clno=${bdto.bno}">삭제</a> 
+			<a href="./modify.do?clno=${bdto.bno}" class="btn btn-warning">수정</a>
+			<a href="./remove.do?clno=${bdto.bno}" class="btn btn-danger">삭제</a> 
 			</td>
 			<td>
 		</tr>
 	</table>
+	</div>
 </body>
 </html>
