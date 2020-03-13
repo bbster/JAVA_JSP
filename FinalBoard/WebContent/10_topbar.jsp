@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <div id="top">
 	<div class="container">
 		<div class="col-md-6 offer" data-animate="fadeInDown">
@@ -11,7 +11,7 @@
 			<ul class="menu">
 				<li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
 				</li>
-				<li><a href="register.html">Register</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#reg-modal">Register</a></li>
 				<li><a href="contact.html">Contact</a></li>
 				<li><a href="#">Recently viewed</a></li>
 			</ul>
@@ -53,6 +53,43 @@
 						discounts and much more!
 					</p>
 
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="reg-modal" tabindex="-1" role="dialog"
+		aria-labelledby="Login" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+
+			<div class="modal-content">
+				<div class="modal-header bg-primary">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="Login">Customer Register</h4>
+				</div>
+				<div class="modal-body">
+					<form action="./member/test" method="post">
+						<div class="form-group">
+							<input type="text" class="form-control" id="email-modal"
+								placeholder="email" name="email">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" id="password-modal"
+								placeholder="password" name="pwd">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" id="nick-modal"
+								placeholder="nickname" name="nick">
+						</div>
+
+						<p class="text-center">
+							<button class="btn btn-primary">
+								<i class="fa fa-sign-in"></i> Register
+							</button>
+						</p>
+
+					</form>
 				</div>
 			</div>
 		</div>
