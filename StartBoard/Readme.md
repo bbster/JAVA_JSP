@@ -1,4 +1,5 @@
-#JAVA-SPRING
+# JAVA-SPRING
+
 
 ## Setting
  1. java 1.8.0설치
@@ -7,24 +8,24 @@
  4. MAMP or mysql 5.7.29, mysql connector-java 5.1.48 설치
  
 
-##server.context.xml -> WebContent.WEB-INF.WEb.xml -> servlet mapping(django url pattern 유사) -> 해당 경로(controller,view 등등 쓰기 나름)
+### server.context.xml -> WebContent.WEB-INF.WEb.xml -> servlet mapping(django url pattern 유사) -> 해당 경로(controller,view 등등 쓰기 나름)
 
 
-## 컨트롤러는 매핑 역할(django urls 역할)만 해주는게 좋다.
+### 컨트롤러는 매핑 역할(django urls 역할)만 해주는게 좋다.
 
-##mysql 
+## mysql 
  - sequence(ORACLE)/auto_increment - 데이터가 삽입 될때마다 1씩 증가 / django ORM의 경우 자동으로 세팅되어있다.
  - blob(Binary Large Object) - 데이터 타입을 알아내거나, 송수신을 위해 작은 객체로 나누는 등의 작업에 사용됨
  - varchar는 꼭 크기를 지정해줘야한다.
 
-##PreparedStatement executeUpdate/executeQuery
+## PreparedStatement executeUpdate/executeQuery
  - insert into 같이(DATA 변화 O) executeUpdate
  - select 같이(DATA 변화 X) executeQuery
  
-##Interface(컴포넌트 명시 / django import views use function)
+## Interface(컴포넌트 명시 / django import views use function)
  
-##다형성
-##오버라이드,오버로딩
-##Form Tag 작동의 이해
-##Spring Annotation
+## 다형성
+## 오버라이드,오버로딩
+## Form Tag 작동의 이해
+## Spring Annotation
  
