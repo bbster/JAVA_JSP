@@ -1,6 +1,5 @@
 # JAVA-SPRING
 
-
 ## Setting
  1. java 1.8.0설치
  2. Path 경로 설정
@@ -18,14 +17,16 @@
  - blob(Binary Large Object) - 데이터 타입을 알아내거나, 송수신을 위해 작은 객체로 나누는 등의 작업에 사용됨
  - varchar는 꼭 크기를 지정해줘야한다.
 
-## PreparedStatement executeUpdate/executeQuery
+## PreparedStatement option executeUpdate/executeQuery
  - insert into 같이(DATA 변화 O) executeUpdate
  - select 같이(DATA 변화 X) executeQuery
  
-## Interface(컴포넌트 명시 / django import views use function)
+## Interface(컴포넌트 명시 / django - import function)
  
 ## 다형성
 ## 오버라이드,오버로딩
 ## Form Tag 작동의 이해
 ## Spring Annotation
+## SQL 관련 구문은 mapper에 xml파일로 정리
+## Parameter Type, Result Type
  
