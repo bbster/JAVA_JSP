@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,13 +33,22 @@ public class MemberController extends HttpServlet {
 		
 		if (sign.equals("regist")) {
 			service.execute(request, response, sign);			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp?pg=welcome");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);
 		} else if (sign.equals("login")) {
 			service.execute(request, response, sign);			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp?pg=welcome");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);
-		}		
+		} else if (sign.equals("logout")) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+			dispatcher.forward(request, response);
+		} else if (sign.equals("idCheck")) {
+			service.execute(request, response, sign);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

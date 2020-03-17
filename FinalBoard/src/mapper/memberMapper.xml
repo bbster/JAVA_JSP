@@ -7,6 +7,9 @@
 		insert into tbl_member values(#{email},#{nickname},#{pwd},#{grade})
 	</insert>
 	<select id="mlogin" parameterType="persistence.MemberDTO" resultType="persistence.MemberDTO">
-		select * from tbl_member where email = #{email} and pwd = #{pwd}
+		select * from tbl_member where email = #{email} and password = #{pwd}
+	</select>
+	<select id="idCheck" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(email) from tbl_Member where email = #{email}
 	</select>
 </mapper>

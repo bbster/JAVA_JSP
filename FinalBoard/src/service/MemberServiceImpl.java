@@ -1,5 +1,8 @@
 package service;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,6 +50,21 @@ public class MemberServiceImpl implements MemberService {
 			} else {
 				log.info(">>> 회원 로그인 실패");
 			}
+		} else if(sign.equals("idCheck")) {
+			String email = request.getParameter("inemail");
+			int isExist = idCheck(email);
+			if(isExist > 0) {
+				log.info(">>> 회원 가입 불가!");
+				try {
+					PrintWriter out = response.getWriter();
+					out.print(isExist);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}else {
+				log.info(">>> 회원가입 가능!");
+			}
+			
 		}
 	}
 
@@ -71,5 +89,9 @@ public class MemberServiceImpl implements MemberService {
 			return null;
 		}		
 	}
-
+	
+	@Override
+	public int idCheck(String email) {
+		return mdao.idCheck(email);
+	}
 }

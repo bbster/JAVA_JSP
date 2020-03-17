@@ -6,6 +6,15 @@
  3. eclipse photon 설치
  4. MAMP or mysql 5.7.29, mysql connector-java 5.1.48 설치
  
+## Spring flow
+ 1. DB 
+ 2. Mapper
+ 3. mybatisconfig
+ 4. DTO/interface / getter, setter/ using field / (Alt,Shift,S)
+ 5. DAO/interface
+ 6. service
+ 7. controller
+ 
 
 ### server.context.xml -> WebContent.WEB-INF.WEb.xml -> servlet mapping(django url pattern 유사) -> 해당 경로(controller,view 등등 쓰기 나름)
 
@@ -30,3 +39,4 @@
 ## SQL 관련 구문은 mapper에 xml파일로 정리
 ## Parameter Type, Result Type
  
+ 과제 : 관리자 로그인 했을때 관리자페이지(링크)에서 회원목록 출력 (Admin page 작성)
