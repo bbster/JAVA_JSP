@@ -16,8 +16,7 @@ public class ProductDTO {
 		super();
 	}
 	
-	public ProductDTO(int pno, String category, String pname, String pcontent, String pwriter, int readcount,
-			Date regdate, Date moddate, String imgfile) {
+	public ProductDTO(String category, String pname, String pcontent, String pwriter, String imgfile) {
 		super();
 		this.pno = pno;
 		this.category = category;
@@ -28,6 +27,13 @@ public class ProductDTO {
 		this.regdate = regdate;
 		this.moddate = moddate;
 		this.imgfile = imgfile;
+	}
+
+	public ProductDTO(int pno, String category, String pname, String pcontent) {
+		this.pno = pno;
+		this.category = category;
+		this.pname = pname;
+		this.pcontent = pcontent;
 	}
 
 	public int getPno() {

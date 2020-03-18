@@ -155,7 +155,7 @@
 			data: {"inemail": $("#email").val(), "sign": "idCheck"},
 			success: function(datas){
 				console.log("datas: " + datas);
-				if(datas == ''){
+				if(datas == '0'){
 					$("#isOk").html("사용할 수 있는 이메일!").css("color", "green");
 				}else{
 					$("#isOk").html("사용할 수 없는 이메일!").css("color", "red");

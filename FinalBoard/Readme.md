@@ -39,4 +39,4 @@
 ## SQL 관련 구문은 mapper에 xml파일로 정리
 ## Parameter Type, Result Type
  
- 과제 : 관리자 로그인 했을때 관리자페이지(링크)에서 회원목록 출력 (Admin page 작성)
+## 과제 : 관리자 로그인 했을때 관리자페이지(링크)에서 회원목록 출력 (Admin page 작성)

@@ -1,6 +1,8 @@
 package ctrl;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,28 +20,45 @@ public class ProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static Logger log = LoggerFactory.getLogger(ProductController.class);
 	ProductService service;
-       
-    public ProductController() {
-    	service = new ProductServiceImpl();
-    }
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String sign = request.getParameter("sign");
-		
-		if(sign.equals("")) {
-			service.execute(request, response, sign);
-		} else if (sign.equals("")) {
-			service.execute(request, response, sign);
-		}else if(sign.equals("")) {
-			service.execute(request, response, sign);
-		}
+	public ProductController() {
+		service = new ProductServiceImpl();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String sign = request.getParameter("sign");
+
+		if (sign.equals("pList")) {
+			service.execute(request, response, sign);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp?pg=pList");
+			dispatcher.forward(request, response);
+		} else if (sign.equals("pWrite")) {
+			service.execute(request, response, sign);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("product?sign=pList");
+			dispatcher.forward(request, response);
+		} else if (sign.equals("pDetail")) {
+			service.execute(request, response, sign);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp?pg=pDetail");
+			dispatcher.forward(request, response);
+		} else if (sign.equals("pModify")) {
+			service.execute(request, response, sign);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp?pg=pModify");
+			dispatcher.forward(request, response);
+		} else if (sign.equals("pModifySave")) {
+			service.execute(request, response, sign);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("product?sign=pDetail");
+			dispatcher.forward(request, response);
+		}
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		service(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		service(request, response);
 	}
 }

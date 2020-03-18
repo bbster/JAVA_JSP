@@ -12,7 +12,7 @@ public class ProductDAOImpl implements ProductDAO {
 	private static Logger log = LoggerFactory.getLogger(ProductDAOImpl.class);
 	
 	private SqlSession sql; 
-	private static String namespace = "mapper.memberMapper";
+	private static String namespace = "mapper.productMapper";
 	
 	public ProductDAOImpl() {
 		new DBBuilder();
@@ -21,20 +21,23 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public void insert(ProductDTO pdto) {
+		sql.insert(namespace +".padd", pdto);
+		sql.commit();
 	}
 
 	@Override
 	public List<ProductDTO> selectList() {
-		return null;
+		return sql.selectList(namespace + ".pList");
 	}
 
 	@Override
 	public ProductDTO selectOne(int pno) {
-		return null;
+		return sql.selectOne(namespace + ".pDetail", pno);
 	}
 
 	@Override
 	public void update(ProductDTO pdto) {
+		sql.update(namespace + ".pModify", pdto);
 	}
 
 	@Override
