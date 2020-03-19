@@ -3,63 +3,49 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="all">
-
 	<div id="content">
 		<div class="container">
 			<div class="col-md-12">
-				<div class="box">
-					<h1>ProductList</h1>
-					<p>In our Ladies department we offer wide selection of the best
-						products we have found and carefully selected worldwide.</p>
-					<c:if test="${s_email ne null && s_email ne '' }">
-						<a href="index.jsp?pg=pWrite" class="btn btn-success">write</a>
-						<a href="index.jsp?pg=pDetail" class="btn btn-success">detail</a>
-					</c:if>
-				</div>
-
 
 				<div class="row products">
-				<P> 테스트 나와라</P>
-					
-					<c:forEach items="${objList }" var="pdto">
-						<div class="col-md-3 col-sm-4">
-							<div class="product">
-								<div class="flip-container">
-									<div class="flipper">
-										<div class="front">
-											<a href="detail.html"> <img src="img/product1.jpg" alt=""
-												class="img-responsive">
-											</a>
-										</div>
-										<div class="back">
-											<a href="detail.html"> <img src="img/product1_2.jpg"
-												alt="" class="img-responsive">
-											</a>
-										</div>
+
+					<div class="col-md-3 col-sm-4">
+						<div class="product">
+							<div class="flip-container">
+								<div class="flipper">
+									<div class="front">
+										<a href="detail.html"> <img src="img/product1.jpg" alt=""
+											class="img-responsive">
+										</a>
+									</div>
+									<div class="back">
+										<a href="detail.html"> <img src="img/product1_2.jpg"
+											alt="" class="img-responsive">
+										</a>
 									</div>
 								</div>
-								<a href="detail.html" class="invisible"> <img
-									src="img/product1.jpg" alt="" class="img-responsive">
-								</a>
-								<div class="text">
-									<h3>
-										<a href="detail.html">${pdto.pname}</a>
-									</h3>
-									<p class="price">${pdto.pwriter}</p>
-									<p class="buttons">
-										<a href="./product?sign=pDetail&pno=${pdto.pno}"
-											class="btn btn-default">View detail</a> <a href="basket.html"
-											class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add
-											to cart</a>
-									</p>
-								</div>
-								<!-- /.text -->
 							</div>
-							<!-- /.product -->
+							<a href="detail.html" class="invisible"> <img
+								src="img/product1.jpg" alt="" class="img-responsive">
+							</a>
+							<div class="text">
+								<h3>
+									<a href="./product?sign=pDetail&pno=${pdto.pno }">Fur coat with very but very very long
+										name</a>
+								</h3>
+								<p class="price">$143.00</p>
+								<p class="buttons">
+									<a href="detail.html" class="btn btn-default">View detail</a> <a
+										href="basket.html" class="btn btn-primary"><i
+										class="fa fa-shopping-cart"></i>Add to cart</a>
+								</p>
+							</div>
+							<!-- /.text -->
 						</div>
-					</c:forEach>
+						<!-- /.product -->
+					</div>
+
 				</div>
-				<!-- /.products -->
 			</div>
 		</div>
 	</div>

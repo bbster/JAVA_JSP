@@ -1,4 +1,4 @@
-package orm;
+ package orm;
 
 import java.io.IOException;
 
@@ -19,5 +19,4 @@ public class DBBuilder {
 	public static SqlSessionFactory getFactory() {
 		return factory;
 	}
-	
 }

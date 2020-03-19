@@ -18,7 +18,7 @@
 						</div>
 
 						<div class="ribbon new">
-							<div class="theribbon">${pdto.readcout}</div>
+							<div class="theribbon">${pdto.readcount}</div>
 							<div class="ribbon-background"></div>
 						</div>
 

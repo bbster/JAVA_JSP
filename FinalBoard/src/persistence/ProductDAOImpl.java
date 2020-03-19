@@ -21,6 +21,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public void insert(ProductDTO pdto) {
+		log.info("Product DAOipl");
 		sql.insert(namespace +".padd", pdto);
 		sql.commit();
 	}

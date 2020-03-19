@@ -37,6 +37,7 @@ public class ProductController extends HttpServlet {
 			service.execute(request, response, sign);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("product?sign=pList");
 			dispatcher.forward(request, response);
+			
 		} else if (sign.equals("pDetail")) {
 			service.execute(request, response, sign);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp?pg=pDetail");

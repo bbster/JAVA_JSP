@@ -8,7 +8,7 @@
 				<div class="box">
 					<h2>코로나 19 관련 물품 입력</h2>
 
-					<form action="./product" method="post">
+					<form action="./product" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="sign" value="pWrite">
 						<div class="row">
 							<div class="col-sm-6">
@@ -22,24 +22,28 @@
 									</select>
 								</div>
 							</div>
+							
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="lastname">ProductName</label> <input type="text"
 										class="form-control" id="pname" name="pname">
 								</div>
 							</div>
+							
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="email">Writter</label> <input type="text"
 										class="form-control" id="email" name="pwriter" value="${s_email }" readonly>
 								</div>
 							</div>
+							
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="subject">Image File</label> <input type="file"
 										class="form-control" id="imgFile" name="imgFile">
 								</div>
 							</div>
+							
 							<div class="col-sm-12">
 								<div class="form-group">
 									<label for="message">Content</label>
