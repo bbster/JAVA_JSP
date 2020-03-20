@@ -10,7 +10,7 @@
 		<c:set var="printPage" value="member/welcome.jsp"/>
 	</c:when>
 		<c:when test="${param.pg.equals('mlist') }">
-		<c:set var="printPage" value="member/list.jsp"/>
+		<c:set var="printPage" value="member/admin.jsp"/>
 	</c:when>
 	<c:when test="${param.pg.equals('pList') }">
 		<c:set var="printPage" value="product/List.jsp"/>
