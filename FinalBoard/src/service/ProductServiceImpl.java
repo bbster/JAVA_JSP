@@ -19,53 +19,57 @@ import persistence.ProductDAOImpl;
 import persistence.ProductDTO;
 
 public class ProductServiceImpl implements ProductService {
-	private static Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
 
+	private static Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
 	ProductDAO pdao;
 	List<ProductDTO> pList;
 	ProductDTO pdto;
 
 	public ProductServiceImpl() {
 		pdao = new ProductDAOImpl();
-
 	}
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, String sign) {
-		log.info(">>> List Test");
 		if (sign.equals("pWrite")) {
-			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-			if (isMultipart) {
+
+			boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
+			log.info("isMultiPart : " + isMultiPart);
+			
+			if (isMultiPart) {
 				ServletContext context = request.getServletContext();
 				log.info("context : " + context);
 				String saveDir = context.getRealPath("upload");
 				log.info("saveDir : " + saveDir);
-				int maxSize = 10 * 1024 * 1024;
+				int maxSize = 1024 * 1024; // 1MB
 				String encoding = "UTF-8";
 
-				MultipartRequest multi;
 				try {
-					multi = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
+					MultipartRequest multi = new MultipartRequest(request, saveDir, maxSize, encoding,
+							new DefaultFileRenamePolicy());
+
 					String category = multi.getParameter("category");
 					String pname = multi.getParameter("pname");
 					String pwriter = multi.getParameter("pwriter");
 					String pcontent = multi.getParameter("pcontent");
 					String imgfile = multi.getFilesystemName("imgfile");
+					log.info("imgfile : " + imgfile);
 
 					ProductDTO pdto = new ProductDTO(category, pname, pcontent, pwriter, imgfile);
 					write(pdto);
 				} catch (IOException e) {
-					log.info("Multipart Fail");
+					log.info(">>> Multipart Fail");
 					e.printStackTrace();
 				}
 			}
 		} else if (sign.equals("pList")) {
 			pList = getList();
 			request.setAttribute("objList", pList);
+			
 		} else if (sign.equals("pDetail") || sign.equals("pModify")) {
-			Integer pno = (Integer)request.getAttribute("pno");
+			Integer pno = (Integer) request.getAttribute("pno");
 			if (pno == null) {
-				pno = (Integer)request.getAttribute("pno");
+				pno = Integer.parseInt(request.getParameter("pno"));
 			}
 			pdto = getProduct(pno);
 			request.setAttribute("pdto", pdto);
@@ -82,14 +86,13 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void write(ProductDTO pdto) {
-		log.info("검증로직 부분");
+		log.info(">>> 검증로직 부분");
 		pdao.insert(pdto);
 	}
 
 	@Override
 	public List<ProductDTO> getList() {
-		pdao.selectList();
-		return null;
+		return pdao.selectList();
 	}
 
 	@Override
@@ -104,11 +107,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void remove(int pno) {
-
 	}
 
 	@Override
-	public void count(int pno) {
-
+	public void readCount(int pno) {
 	}
 }

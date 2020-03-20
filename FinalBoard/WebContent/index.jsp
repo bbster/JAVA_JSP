@@ -9,6 +9,9 @@
 	<c:when test="${param.pg.equals('welcome') }">
 		<c:set var="printPage" value="member/welcome.jsp"/>
 	</c:when>
+		<c:when test="${param.pg.equals('mlist') }">
+		<c:set var="printPage" value="member/list.jsp"/>
+	</c:when>
 	<c:when test="${param.pg.equals('pList') }">
 		<c:set var="printPage" value="product/List.jsp"/>
 	</c:when>
@@ -18,7 +21,7 @@
 	<c:when test="${param.pg.equals('pDetail') }">
 		<c:set var="printPage" value="product/detail.jsp"/>
 	</c:when>
-		<c:when test="${param.pg.equals('pModify') }">
+	<c:when test="${param.pg.equals('pModify') }">
 		<c:set var="printPage" value="product/modify.jsp"/>
 	</c:when>
 </c:choose>

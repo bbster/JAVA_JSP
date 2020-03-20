@@ -14,6 +14,5 @@ public interface ProductService {
 	ProductDTO getProduct(int pno);
 	void modify(ProductDTO pdto);
 	void remove(int pno);
-	void count(int pno);
-
+	void readCount(int pno);
 }

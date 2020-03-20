@@ -4,46 +4,41 @@
 <div id="all">
 	<div id="content">
 		<div class="container">
-			<div class="col-sm-12">
+			<div class="col-md-12">
 				<div class="box">
-					<h2>코로나 19 관련 물품 입력</h2>
-
-					<form action="./product" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="sign" value="pWrite">
+					<h2>코로나19 상품 입력</h2>
+					<form action="./product?sign=pWrite" method="post" enctype="multipart/form-data">
+					<!-- <input type="hidden" name="sign" value="pWrite"> -->
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group">
-									<label for="firstname">Category</label> 
+									<label for="firstname">Category</label>
 									<select class="form-control" id="category" name="category">
-										<option selected>선택하세요.</option>
+										<option selected>선택하세요</option>
 										<option value="handcleaner">손세정제</option>
 										<option value="mask">마스크</option>
 										<option value="thermometer">체온계</option>
 									</select>
 								</div>
 							</div>
-							
 							<div class="col-sm-6">
 								<div class="form-group">
-									<label for="lastname">ProductName</label> <input type="text"
+									<label for="lastname">Product Name</label> <input type="text"
 										class="form-control" id="pname" name="pname">
 								</div>
 							</div>
-							
 							<div class="col-sm-6">
 								<div class="form-group">
-									<label for="email">Writter</label> <input type="text"
+									<label for="email">Writer</label> <input type="text"
 										class="form-control" id="email" name="pwriter" value="${s_email }" readonly>
 								</div>
 							</div>
-							
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="subject">Image File</label> <input type="file"
-										class="form-control" id="imgFile" name="imgFile">
+										class="form-control" id="imgFile" name="imgfile">
 								</div>
 							</div>
-							
 							<div class="col-sm-12">
 								<div class="form-group">
 									<label for="message">Content</label>
@@ -64,4 +59,3 @@
 			</div>
 		</div>
 	</div>
-</div>

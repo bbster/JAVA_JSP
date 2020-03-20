@@ -2,14 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="s_nick" value="${nick }" scope="session" />
-<c:set var="s_email" value="${email }" scope="session" />
+<c:set var="s_email" scope="session">${email }</c:set>
 <c:set var="s_grade" value="${grade }" scope="session" />
-
 <!-- *** TOPBAR ***
  _________________________________________________________ -->
 <div id="top">
 	<c:choose>
 		<c:when test="${s_email ne null && s_email ne ''}">
+			<!-- 로그인이 되어 있을때 -->
 			<div class="container">
 				<div class="col-md-6 offer" data-animate="fadeInDown">
 					<a href="#" class="btn btn-success btn-sm"
@@ -18,33 +18,36 @@
 				</div>
 				<div class="col-md-6" data-animate="fadeInDown">
 					<ul class="menu">
-						<li>${s_email }</li>
-						<li>${s_nick }</li>
-						<li><c:choose>
-								<c:when test="${s_grade eq '0'}">
-				일반회원
-				</c:when>
-								<c:when test="${s_grade eq '5'}">
-				우수회원
-				</c:when>
-								<c:when test="${s_grade eq '10'}">
-				골드회원
-				</c:when>
-								<c:when test="${s_grade eq '20'}">
-				VIP회원
-				</c:when>
-								<c:when test="${s_grade eq '99'}">
-				관리자
-				</c:when>
-							</c:choose></li>
+						<li style="color:#fff;">${s_email }</li>
+						<li style="color:#fff;">${s_nick }</li>
+						<li style="color:#fff;">
+							<c:choose>
+								<c:when test="${s_grade eq '0' }">
+								일반회원
+								</c:when>
+								<c:when test="${s_grade eq '5' }">
+								우수회원
+								</c:when>
+								<c:when test="${s_grade eq '10' }">
+								골드회원
+								</c:when>
+								<c:when test="${s_grade eq '20' }">
+								VIP회원
+								</c:when>
+								<c:when test="${s_grade eq '99' }">
+								관리자
+								<li><a href="./member?sign=mlist">관리자 페이지</a></li>
+								</c:when>
+							</c:choose>
+						</li>
 						<li><a href="./member?sign=logout">로그아웃</a></li>
 					</ul>
 				</div>
 			</div>
 		</c:when>
 		<c:otherwise>
+			<!-- 로그인이 안되어 있을때 -->
 			<div class="container">
-			<form action="./member" method="post">
 				<div class="col-md-6 offer" data-animate="fadeInDown">
 					<a href="#" class="btn btn-success btn-sm"
 						data-animate-hover="shake">Offer of the day</a> <a href="#">Get
@@ -56,14 +59,13 @@
 							data-target="#login-modal">Login</a></li>
 						<li><a href="#" data-toggle="modal" data-target="#reg-modal">Register</a>
 						</li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="#">Recently viewed</a></li>
 					</ul>
 				</div>
-				</form>
 			</div>
 		</c:otherwise>
 	</c:choose>
-
-
 	<div class="modal fade" id="reg-modal" tabindex="-1" role="dialog"
 		aria-labelledby="Login" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
@@ -101,7 +103,6 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
 		aria-labelledby="Login" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
@@ -145,24 +146,21 @@
 	</div>
 </div>
 <!-- *** TOP BAR END *** -->
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-	$("#email").on("blur", function(){
+	$("#email").blur(function(){
 		$.ajax({
 			type: "POST",
-			url: "./member?sign=idCheck",
-			data: {"inemail": $("#email").val(), "sign": "idCheck"},
+			url: "./member",
+			data: {"inemail" : $("#email").val(), "sign" : "idCheck"},
 			success: function(datas){
-				console.log("datas: " + datas);
-				if(datas == '0'){
-					$("#isOk").html("사용할 수 있는 이메일!").css("color", "green");
+				console.log("datas : " + datas);
+				if(datas == '1'){
+					$("#isOk").html("사용할 수 없는 이메일!").css("color","#f00");					
 				}else{
-					$("#isOk").html("사용할 수 없는 이메일!").css("color", "red");
-					$("#email").focus();
-					$("#email").val("");
+					$("#isOk").html("사용할 수 있는 이메일!").css("color","#0f0");										
 				}
-			}
+			}			
 		});
 	});
 </script>

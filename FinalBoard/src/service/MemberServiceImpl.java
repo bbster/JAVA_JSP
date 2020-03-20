@@ -2,6 +2,7 @@ package service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,10 +14,12 @@ import org.slf4j.LoggerFactory;
 import persistence.MemberDAO;
 import persistence.MemberDAOImpl;
 import persistence.MemberDTO;
+import persistence.ProductDTO;
 
 public class MemberServiceImpl implements MemberService {
 	private static Logger log = LoggerFactory.getLogger(MemberServiceImpl.class);
 	MemberDAO mdao;
+	List<MemberDTO> mlist;
 
 	public MemberServiceImpl() {
 		mdao = new MemberDAOImpl();
@@ -54,7 +57,7 @@ public class MemberServiceImpl implements MemberService {
 			String email = request.getParameter("inemail");
 			int isExist = idCheck(email);
 			if(isExist > 0) {
-				log.info(">>> 회원 가입 불가!");
+				log.info(">>> 회원가입 불가!");
 				try {
 					PrintWriter out = response.getWriter();
 					out.print(isExist);
@@ -64,8 +67,17 @@ public class MemberServiceImpl implements MemberService {
 			}else {
 				log.info(">>> 회원가입 가능!");
 			}
-			
+		} else if (sign.equals("mlist")) {
+			mlist = getList();
+			request.setAttribute("objList", mlist);
+		} else if (sign.equals("mdelete")) {
+			String email = request.getParameter("email");
+			int flag = deleteMember(email);
 		}
+	}
+
+	private int deleteMember(String email) {
+		return mdao.delete(email);
 	}
 
 	@Override
@@ -89,9 +101,15 @@ public class MemberServiceImpl implements MemberService {
 			return null;
 		}		
 	}
-	
+
 	@Override
 	public int idCheck(String email) {
-		return mdao.idCheck(email);
+		return mdao.idCheck(email);		 
 	}
+
+	@Override
+	public List<MemberDTO> getList() {
+		return mdao.selectList();
+	}
+		
 }

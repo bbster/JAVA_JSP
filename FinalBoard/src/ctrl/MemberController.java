@@ -33,7 +33,7 @@ public class MemberController extends HttpServlet {
 		
 		if (sign.equals("regist")) {
 			service.execute(request, response, sign);			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp?pg=welcome");
 			dispatcher.forward(request, response);
 		} else if (sign.equals("login")) {
 			service.execute(request, response, sign);			
@@ -45,8 +45,14 @@ public class MemberController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);
 		} else if (sign.equals("idCheck")) {
+			service.execute(request, response, sign);			
+		} else if (sign.equals("mlist")) {
 			service.execute(request, response, sign);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp?pg=mlist");
+			dispatcher.forward(request, response);
+		}else if (sign.equals("mdelete")) {
+			service.execute(request, response, sign);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("member?sign=mlist");
 			dispatcher.forward(request, response);
 		}
 	}
