@@ -4,8 +4,8 @@
  1. java 1.8.0설치
  2. Path 경로 설정
  3. eclipse photon 설치
- 4. MAMP or mysql 5.7.29, mysql connector-java 5.1.48 설치
- 5. https://download.springsource.com/release/STS/3.9.3.RELEASE/dist/e4.8/spring-tool-suite-3.9.3.RELEASE-e4.8.0-win32-x86_64.zip
+ 4. https://download.springsource.com/release/STS/3.9.3.RELEASE/dist/e4.8/spring-tool-suite-3.9.3.RELEASE-e4.8.0-win32-x86_64.zip
+ 5. oracle 11g
  
 ## Spring flow
  1. DB 
